@@ -88,6 +88,6 @@ func Fitrim(fd, data uintptr) error {
 }
 
 // Firfreeze send firfreeze ioctl to fd
-func Firfreeze(fd uintptr) error {
+func Firfreeze(fd, data uintptr) error {
 	return IOCTL(fd, IOWR('X', 119, uintptr(0)), data)
 }
