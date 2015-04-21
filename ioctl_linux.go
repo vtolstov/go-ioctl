@@ -2,6 +2,8 @@
 
 package ioctl
 
+import "unsafe"
+
 // BlkPart send blkpart ioctl to fd
 func BlkRRPart(fd uintptr) error {
 	return IOCTL(fd, IO(0x12, 95), uintptr(0))
@@ -13,9 +15,16 @@ func BlkPg(fd, data uintptr) error {
 	return nil
 }
 
+type FsTrimRange struct {
+	start     uint64
+	length    uint64
+	minlength uint64
+}
+
 // Fitrim send fitrim ioctl to fd
 func Fitrim(fd, data uintptr) error {
-	return IOCTL(fd, IOWR('X', 121, uintptr(0)), data)
+	r := FsTrimRange{}
+	return IOCTL(fd, IOWR('X', 121, uintptr(unsafe.Pointer(&r))), data)
 }
 
 // Firfreeze send firfreeze ioctl to fd
