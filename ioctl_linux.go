@@ -16,9 +16,9 @@ func BlkPg(fd, data uintptr) error {
 }
 
 type FsTrimRange struct {
-	start     uint64
-	length    uint64
-	minlength uint64
+	Start     uint64
+	Length    uint64
+	MinLength uint64
 }
 
 // Fitrim send fitrim ioctl to fd
