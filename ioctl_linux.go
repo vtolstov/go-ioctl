@@ -27,7 +27,12 @@ func Fitrim(fd, data uintptr) error {
 	return IOCTL(fd, IOWR('X', 121, uintptr(unsafe.Pointer(&r))), data)
 }
 
-// Firfreeze send firfreeze ioctl to fd
-func Firfreeze(fd, data uintptr) error {
+// Fifreeze send fifreeze ioctl to fd
+func Fifreeze(fd, data uintptr) error {
 	return IOCTL(fd, IOWR('X', 119, uintptr(0)), data)
+}
+
+// Fithaw send fithaw ioctl to fd
+func Fithaw(fd, data uintptr) error {
+	return IOCTL(fd, IOWR('X', 120, uintptr(0)), data)
 }
